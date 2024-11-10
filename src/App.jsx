@@ -7,17 +7,37 @@ import Dog from "./components/Dog/Dog";
 import "./App.css";
 
 function App() {
-    const [hearts, setHearts] = useState(3);
+    const [hearts, setHearts] = useState(() => {
+        const savedHearts = localStorage.getItem("hearts");
+        return savedHearts ? parseInt(savedHearts, 10) : 3; 
+    });
 
     // TODO: integrate with Input later
-    const [steps, setSteps] = useState(5000);
+    const [steps, setSteps] = useState(() => {
+        const savedSteps = localStorage.getItem("steps");
+        return savedSteps ? parseInt(savedSteps, 10) : 0;
+    });
 
     // value for the demo
     // how many days passed from the init state
-    const [day, setDay] = useState(0);
+    const [day, setDay] = useState(() => {
+        const savedDay = localStorage.getItem("day");
+        return savedDay ? parseInt(savedDay, 10) : 0; // default to 0 if not found
+    });
 
     //dog mood
-    const [mood, setMood] = useState('medium');
+    const [mood, setMood] = useState(() => {
+        const savedMood = localStorage.getItem("mood");
+        return savedMood || 'medium'; // default to 'medium' if not found
+    });
+
+    //save to localStorage whenever there's change
+    useEffect(() => {
+        localStorage.setItem("hearts", hearts);
+        localStorage.setItem("steps", steps);
+        localStorage.setItem("day", day);
+        localStorage.setItem("mood", mood);
+    }, [steps, hearts, day, mood]);
 
     //changes dog mood
     useEffect(() => {
@@ -49,6 +69,17 @@ function App() {
         }
     };
 
+    const handleReset = () => {
+        setHearts(3);
+        setSteps(0);
+        setDay(0);
+        setMood('medium');
+        localStorage.removeItem("hearts");
+        localStorage.removeItem("steps");
+        localStorage.removeItem("day");
+        localStorage.removeItem("mood");
+    }
+
     return (
         <>
             <Header
@@ -58,6 +89,7 @@ function App() {
             />
             <Dog mood={mood} />
             <Progress steps={steps} />
+            <button onClick={handleReset}>Reset</button>
         </>
     );
 }
