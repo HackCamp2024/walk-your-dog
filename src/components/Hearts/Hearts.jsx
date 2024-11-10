@@ -1,15 +1,13 @@
-import filledHeart from './filledHeart.png'; //empty path for now
-import emptyHeart from './emptyHeart.png'; //empty path for now
+
 import "./Hearts.css";
 
 const Heart = ({ filled }) => {
     return (
       <div>
         <img
-          src={filled ? filledHeart : emptyHeart}
+          src={filled ? '/assets/filled-heart.png' : '/assets/unfilled-heart .png'}
           alt={filled ? 'Filled heart' : 'Empty heart'}
-          width={24}
-          height={24}
+          className="heart"
         />
       </div>
     );
