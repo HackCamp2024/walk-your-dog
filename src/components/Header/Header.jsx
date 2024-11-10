@@ -1,4 +1,6 @@
 import "./Header.css";
+import Hearts from '../Hearts/Hearts';
+
 function formatDate(dayOffset) {
   const date = new Date(Date.now() + dayOffset * 86400000); // 86400000 ms in a day
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -14,7 +16,9 @@ export const Header = ({ day, handleClickNextDay, hearts }) => {
       </div>
 
       {/* TODO: Hearts component later */}
-      <div>Hearts</div>
+      <div className="Hearts">
+        <Hearts count={hearts}></Hearts>
+      </div>
     </div>
   );
 };
