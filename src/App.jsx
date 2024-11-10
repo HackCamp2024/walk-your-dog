@@ -56,7 +56,19 @@ function App() {
   const handleClickNextDay = () => {
     setDay(day + 1);
     setSteps(0);
-    // TODO change the number of hearts to fill depending on the number of steps the user had at the day
+    if (steps >= 10000) {
+        if (hearts == 5) {
+            setHearts(hearts);
+        } else {
+            setHearts(hearts + 1);
+        }
+    } else {
+        if (hearts == 0) {
+            setHearts(hearts);
+        } else {
+            setHearts(hearts - 1);
+        }
+    }
   };
 
     const handleReset = () => {
@@ -68,6 +80,10 @@ function App() {
         localStorage.removeItem("steps");
         localStorage.removeItem("day");
         localStorage.removeItem("mood");
+    }
+
+    const updateCurrentInput = (e) => {
+        setValue(+e.target.value);
     }
 
     return (
