@@ -1,15 +1,18 @@
 import "./Header.css";
-function formatDate() {
-  const today = new Date();
-  const options = { month: "short", day: "numeric" };
-  return today.toLocaleDateString("en-US", options);
+function formatDate(dayOffset) {
+  const date = new Date(Date.now() + dayOffset * 86400000); // 86400000 ms in a day
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export const Header = () => {
-  const dateText = formatDate();
+export const Header = ({ day, handleClickNextDay, hearts }) => {
+  const dateText = formatDate(day);
   return (
     <div className="header-container">
-      <p>{dateText}</p>
+      <div className="day-container">
+        <p>{dateText}</p>
+        <button onClick={handleClickNextDay}>Next day</button>
+      </div>
+
       {/* TODO: Hearts component later */}
       <div>Hearts</div>
     </div>
