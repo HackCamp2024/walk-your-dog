@@ -1,15 +1,30 @@
-import { AiTwotoneHeart } from "react-icons/ai";
+import filledHeart from './filledHeart.png'; //empty path for now
+import emptyHeart from './emptyHeart.png'; //empty path for now
+import "./Hearts.css";
 
-const Hearts = () => {
+const Heart = ({ filled }) => {
     return (
-        <div className="image-row">
-            <AiTwotoneHeart className="first-heart" />
-            <AiTwotoneHeart className="second-heart" />
-            <AiTwotoneHeart className="third-heart" />
-            <AiTwotoneHeart className="fourth-heart" />
-            <AiTwotoneHeart className="fifth-heart" />
-        </div>
+      <div>
+        <img
+          src={filled ? filledHeart : emptyHeart}
+          alt={filled ? 'Filled heart' : 'Empty heart'}
+          width={24}
+          height={24}
+        />
+      </div>
     );
-}
+  };
+
+const Hearts = ({ count }) => {
+    return (
+      <div style={{ display: 'flex', gap: '10px' }}>
+        {[...Array(5)].map((_, index) => (
+          <Heart key={index} filled={index < count} />
+        ))}
+      </div>
+    );
+  };
+
 
 export default Hearts;
+
