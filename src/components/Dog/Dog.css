@@ -2,5 +2,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 10%;
+}
+.Dog img {
+    width: 40%;
+    height: auto;
 }
