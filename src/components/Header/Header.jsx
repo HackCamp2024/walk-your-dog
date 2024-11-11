@@ -1,5 +1,5 @@
 import "./Header.css";
-import Hearts from '../Hearts/Hearts';
+import Hearts from "../Hearts/Hearts";
 
 function formatDate(dayOffset) {
   const date = new Date(Date.now() + dayOffset * 86400000); // 86400000 ms in a day
@@ -11,7 +11,7 @@ export const Header = ({ day, handleClickNextDay, hearts }) => {
   return (
     <div className="header-container">
       <div className="day-container">
-        <p>{dateText}</p>
+        <p className="day-text">{dateText}</p>
         <button onClick={handleClickNextDay}>Next day</button>
       </div>
 
