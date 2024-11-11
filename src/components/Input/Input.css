@@ -14,4 +14,15 @@
   border-radius: 8px;
   border: none;
   outline: none;
+  
+}
+.input-button {
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: #839750;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
 }
