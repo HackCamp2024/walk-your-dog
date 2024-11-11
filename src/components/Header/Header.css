@@ -7,3 +7,7 @@
   display: flex;
   gap: 10px;
 }
+
+.day-text {
+  font-weight: 700;
+}
