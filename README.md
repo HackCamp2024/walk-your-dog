@@ -22,16 +22,16 @@ https://walk-your-dog.netlify.app/
   <tr>
     <td>
         <a href="https://github.com/JiandingBai">
-        <img src="https://avatars.githubusercontent.com/JiandingBai" width="100px;" alt="Yuko" /><br />
+        <img src="https://avatars.githubusercontent.com/JiandingBai" width="100px;" alt="Jianding" /><br />
         <sub>
-          <b>Tracy</b><br />
+          <b>Jianding</b><br />
           <b>Designer / Developer</b>
         </sub>
       </a>
     </td>
    <td align="center">
       <a href="https://github.com/tkozek">
-        <img src="https://avatars.githubusercontent.com/tkozek" width="100px;" alt="Yuko" /><br />
+        <img src="https://avatars.githubusercontent.com/tkozek" width="100px;" alt="Tracy" /><br />
         <sub>
           <b>Tracy</b><br />
           <b>Developer</b>
@@ -40,10 +40,10 @@ https://walk-your-dog.netlify.app/
     </td>
         <td align="center">
       <a href="https://github.com/tkozek">
-        <img src="https://avatars.githubusercontent.com/tkozek" width="100px;" alt="Yuki Kasugai" /><br />
+        <img src="https://avatars.githubusercontent.com/tkozek" width="100px;" alt="Trevor" /><br />
         <sub>
           <b>Trevor</b><br />
-          <b>Frontend Developer</b>
+          <b>Developer</b>
         </sub>
       </a>
     </td>
@@ -66,9 +66,9 @@ https://walk-your-dog.netlify.app/
 <tr>
  <td align="center">
       <a href="https://github.com/TopazJ">
-        <img src="https://avatars.githubusercontent.com/TopazJ" width="100px;" alt="Yuko" /><br />
+        <img src="https://avatars.githubusercontent.com/TopazJ" width="100px;" alt="Shamez" /><br />
         <sub>
-          <b>Yuko</b><br />
+          <b>Shamez</b><br />
           <b>Mentor</b>
         </sub>
       </a>
