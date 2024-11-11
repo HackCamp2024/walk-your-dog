@@ -24,12 +24,12 @@ const ARView = () => {
                         {/* Define the marker for AR */}
                         <a-marker preset="hiro">
                             {/* 3D Dog Model (GLTF format) */}
-                            <a-entity
-                                gltf-model="/assets/happy-running-dog.png)"
-                                scale="1 1 1"
+                            <a-image
+                                src="/assets/happy-running-dog.png)"
+                                scale="2 2 2"
                                 position="0 0 0"
                                 rotation="0 0 0"
-                            ></a-entity>
+                            ></a-image>
                         </a-marker>
 
                         {/* Camera for AR */}
