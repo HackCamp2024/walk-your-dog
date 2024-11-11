@@ -1,6 +1,6 @@
 # Walk Me
 
-Take care your inner dog
+Take care of your inner dog
 
 ## Demo link
 
@@ -8,7 +8,12 @@ https://walk-your-dog.netlify.app/
 
 ## Features
 
-- TBD
+- A cute dog to encourage you to take 10,000 steps daily and have a healthier lifestyle
+- Real time progress bar to show visually your steps
+- Can also add manually the number of steps
+- The dog has 5 hearts, and will be sad if you do not walk often enough (1 heart or lower). If you walk 10,000 steps enough (5 hearts), the dog will be happy!
+- Linked in real time with your mobile Health Application such as Google Health as pedometer
+- For future development, Augmented Reality can be implemented where you can see your virtual dog walking beside you
 
 ## Tech stack
 
@@ -25,7 +30,7 @@ https://walk-your-dog.netlify.app/
         <img src="https://avatars.githubusercontent.com/JiandingBai" width="100px;" alt="Jianding" /><br />
         <sub>
           <b>Jianding</b><br />
-          <b>Designer / Developer</b>
+          <b>Designer / Developer / Artist</b>
         </sub>
       </a>
     </td>
@@ -34,7 +39,7 @@ https://walk-your-dog.netlify.app/
         <img src="https://avatars.githubusercontent.com/tkozek" width="100px;" alt="Tracy" /><br />
         <sub>
           <b>Tracy</b><br />
-          <b>Developer</b>
+          <b>Developer / Designer</b>
         </sub>
       </a>
     </td>
