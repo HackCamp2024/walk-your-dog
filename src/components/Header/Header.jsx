@@ -12,7 +12,9 @@ export const Header = ({ day, handleClickNextDay, hearts }) => {
     <div className="header-container">
       <div className="day-container">
         <p className="day-text">{dateText}</p>
-        <button onClick={handleClickNextDay}>Next day</button>
+        <button className="next-day-button" onClick={handleClickNextDay}>
+          Next day
+        </button>
       </div>
 
       {/* TODO: Hearts component later */}

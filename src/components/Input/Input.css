@@ -1,6 +1,17 @@
 .step-input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 90vw;
+  margin: auto;
+  gap: 10px;
+}
+
+.steps-input {
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  outline: none;
 }

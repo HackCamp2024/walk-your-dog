@@ -1,13 +1,22 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 .day-container {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
 .day-text {
   font-weight: 700;
+}
+
+.next-day-button {
+  font-size: small;
+  padding: 5px;
+  height: fit-content;
 }

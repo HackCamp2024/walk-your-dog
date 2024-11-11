@@ -6,7 +6,12 @@ function Input({ value, handleChange, setSteps }) {
 
   return (
     <div className="step-input">
-      <input type="text" value={value} onChange={handleChange} />/ 10000
+      <input
+        type="text"
+        value={value}
+        onChange={handleChange}
+        className="steps-input"
+      />
       <button onClick={handleAdd}>Add</button>
     </div>
   );
