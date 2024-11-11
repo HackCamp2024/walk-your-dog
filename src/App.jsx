@@ -4,15 +4,17 @@ import { Header } from "./components/Header/Header";
 import { Progress } from "./components/Progress/Progress";
 import Input from  "./components/Input/Input";
 import Dog from "./components/Dog/Dog";
-
+import LoginButton from "./components/LoginButton/LoginButton";
 import "./App.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "./components/LogoutButton/LogoutButton";
 
 function App() {
     const [hearts, setHearts] = useState(() => {
         const savedHearts = localStorage.getItem("hearts");
         return savedHearts ? parseInt(savedHearts, 10) : 3; 
     });
-
+    const { isAuthenticated } = useAuth0();
     // TODO: integrate with Input later
     const [steps, setSteps] = useState(() => {
         const savedSteps = localStorage.getItem("steps");
@@ -101,6 +103,7 @@ function App() {
       handleChange={updateCurrentInput}
       setSteps={setSteps}
       />
+     { isAuthenticated? <LogoutButton />:<LoginButton />}
     </div>
     );
 }
