@@ -4,6 +4,7 @@ import { Header } from "./components/Header/Header";
 import { Progress } from "./components/Progress/Progress";
 import Input from  "./components/Input/Input";
 import Dog from "./components/Dog/Dog";
+import ARView from './components/AR/AugReality';
 
 import "./App.css";
 
@@ -92,6 +93,8 @@ function App() {
                 day={day}
                 handleClickNextDay={handleClickNextDay}
                 hearts={hearts}
+            />
+            <ARView 
             />
             <Dog mood={mood} />
             <Progress steps={steps} />
