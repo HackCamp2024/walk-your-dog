@@ -20,6 +20,7 @@ https://walk-your-dog.netlify.app/
 
 <table>
   <tr>
+    <td>
         <a href="https://github.com/JiandingBai">
         <img src="https://avatars.githubusercontent.com/JiandingBai" width="100px;" alt="Yuko" /><br />
         <sub>
