@@ -1,21 +1,37 @@
 .progress-container {
-  width: 90vw;
-  margin: 20px auto;
-  text-align: center;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  border: solid 1px black;
-  overflow: hidden;
-  margin: 10px 0;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background-color: #5a6f25;
-  transition: width 0.3s ease;
-}
+    width: 90vw;
+    max-width: 600px; /* Optional: Set a max width for better control */
+    margin: 20px auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 25px; /* Increase height for a more prominent bar */
+    background-color: #e0e0e0;
+    border-radius: 20px; /* Round the corners more */
+    border: solid 2px #ccc; /* Lighter border for a more subtle look */
+    overflow: hidden;
+    margin: 10px 0;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect inside */
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    width: 0; /* Start with 0 width */
+    background-color: #5a6f25;
+    border-radius: 20px; /* Same rounded corners as the container */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Shadow effect for the fill */
+    transition: width 1s ease-in-out; /* Smooth transition for width change */
+  }
+  
+  .progress-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 8px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  

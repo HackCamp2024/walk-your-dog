@@ -12,7 +12,7 @@ function Input({ value, handleChange, setSteps }) {
         onChange={handleChange}
         className="steps-input"
       />
-      <button onClick={handleAdd}>Add</button>
+      <button className="input-button" onClick={handleAdd}>Add</button>
     </div>
   );
 }
