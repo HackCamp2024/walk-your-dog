@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "aframe";
-import "ar.js/aframe/build/aframe-ar.js";  // Import AR.js for A-Frame
 
 const ARView = () => {
   const [isCameraActive, setIsCameraActive] = useState(false);
@@ -15,35 +13,36 @@ const ARView = () => {
 
   return (
     <div>
+      {/* Button to start AR */}
       <button onClick={handleStartAR}>Start AR</button>
 
+      {/* AR Scene that appears when camera is active */}
       {isCameraActive && (
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", width: "100%", height: "400px" }}>
           <a-scene
             embedded
             arjs="sourceType: webcam; debugUIEnabled: false;"
             style={{ width: "100%", height: "100%" }}
           >
-            {/* Define the marker for AR */}
+            {/* Define AR Marker (could be "hiro" or custom) */}
             <a-marker preset="hiro">
-              {/* PNG image in AR */}
+              {/* 2D Image (PNG) of dog */}
               <a-image
-                src="/assets/happy-running-dog.png"  // Corrected path
+                src="/assets/happy-running-dog.png"
                 scale="2 2 2"
                 position="0 0 0"
                 rotation="0 0 0"
               ></a-image>
             </a-marker>
 
-            {/* Camera for AR */}
+            {/* Camera Entity for AR */}
             <a-entity camera></a-entity>
           </a-scene>
         </div>
       )}
 
-      {isCameraActive && (
-        <button onClick={handleStopAR}>Stop AR</button>
-      )}
+      {/* Button to stop AR */}
+      {isCameraActive && <button onClick={handleStopAR}>Stop AR</button>}
     </div>
   );
 };
