@@ -25,7 +25,7 @@ const ARView = () => {
           <a-marker preset="hiro">
             {/* Display the dog image in AR */}
             <a-image
-              src="/assets/your-dog-image.png" // Replace with your PNG path
+              src="/assets/happy-running-dog.png" // Replace with your PNG path
               scale="1 1 1"
               position="0 0 0"
               rotation="0 0 0"
