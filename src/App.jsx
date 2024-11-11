@@ -88,7 +88,7 @@ function App() {
     }
 
     return (
-        <>
+        <div className="background">
             <Header
                 day={day}
                 handleClickNextDay={handleClickNextDay}
@@ -104,7 +104,7 @@ function App() {
       handleChange={updateCurrentInput}
       setSteps={setSteps}
       />
-    </>
+    </div>
     );
 }
 
