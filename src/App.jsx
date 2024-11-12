@@ -8,6 +8,8 @@ import LoginButton from "./components/LoginButton/LoginButton";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
 import { fetchStepsData } from "./utils/getStepsData";
 
+import { googleLogout } from "@react-oauth/google";
+
 import "./App.css";
 
 function App() {
@@ -30,7 +32,6 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("hearts", hearts);
-    localStorage.setItem("steps", steps);
     localStorage.setItem("mood", mood);
   }, [steps, hearts, mood]);
 
@@ -99,6 +100,12 @@ function App() {
     console.error("Login failed:", error);
   };
 
+  const handleLogout = () => {
+    googleLogout();
+    Cookie.remove("access_token");
+    setAccessToken(null);
+  };
+
   return (
     <div className="background">
       <Header hearts={hearts} />
@@ -110,7 +117,7 @@ function App() {
           <Progress steps={steps} />
         )}
         {!!accessToken ? (
-          <LogoutButton />
+          <LogoutButton handleLogout={handleLogout} />
         ) : (
           <LoginButton
             handleLoginSuccess={handleLoginSuccess}

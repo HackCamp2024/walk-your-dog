@@ -4,7 +4,6 @@ import "./LoginButton.css";
 const LoginButton = ({ handleLoginSuccess }) => {
   const login = useGoogleLogin({
     onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
       await handleLoginSuccess(codeResponse);
     },
     scope: "https://www.googleapis.com/auth/fitness.activity.read",

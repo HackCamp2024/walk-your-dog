@@ -1,9 +1,8 @@
-import { googleLogout } from "@react-oauth/google";
 import "../LoginButton/LoginButton.css";
 
-const LogoutButton = () => {
+const LogoutButton = ({ handleLogout }) => {
   return (
-    <button className="auth-button" onClick={() => googleLogout()}>
+    <button className="auth-button" onClick={() => handleLogout()}>
       Log Out
     </button>
   );
