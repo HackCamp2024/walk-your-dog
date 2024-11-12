@@ -6,18 +6,20 @@ function formatDate(dayOffset) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export const Header = ({ day, handleClickNextDay, hearts }) => {
+export const Header = ({ day, hearts, user, isAuthenticated }) => {
   const dateText = formatDate(day);
   return (
     <div className="header-container">
       <div className="day-container">
+        {isAuthenticated && (
+          <img className="profile-image" src={user.picture} />
+        )}
         <p className="day-text">{dateText}</p>
-        <button className="next-day-button" onClick={handleClickNextDay}>
+        {/* <button className="next-day-button" onClick={handleClickNextDay}>
           Next day
-        </button>
+        </button> */}
       </div>
 
-      {/* TODO: Hearts component later */}
       <div className="Hearts">
         <Hearts count={hearts}></Hearts>
       </div>

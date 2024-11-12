@@ -5,39 +5,45 @@
   padding: 20px;
 }
 .day-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .day-text {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .next-day-button {
-    font-size: 14px;
-    padding: 8px 15px;
-    background-color: #839750;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .next-day-button:hover {
-    background-color: #4f5c2f;
-  }
-  
-  .next-day-button:focus {
-    outline: none;
-  }
-  
-  .Hearts {
-    display: flex;
-    justify-content: flex-end;  /* Aligns hearts to the right */
-    align-items: center;
-    gap: 10px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.day-text {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.next-day-button {
+  font-size: 14px;
+  padding: 8px 15px;
+  background-color: #839750;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-day-button:hover {
+  background-color: #4f5c2f;
+}
+
+.next-day-button:focus {
+  outline: none;
+}
+
+.Hearts {
+  display: flex;
+  justify-content: flex-end; /* Aligns hearts to the right */
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}

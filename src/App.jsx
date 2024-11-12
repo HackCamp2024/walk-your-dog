@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import { Header } from "./components/Header/Header";
 import { Progress } from "./components/Progress/Progress";
-import Input from "./components/Input/Input";
 import Dog from "./components/Dog/Dog";
 import LoginButton from "./components/LoginButton/LoginButton";
 import "./App.css";
@@ -14,13 +13,12 @@ function App() {
     const savedHearts = localStorage.getItem("hearts");
     return savedHearts ? parseInt(savedHearts, 10) : 3;
   });
-  const { isAuthenticated } = useAuth0();
-  // TODO: integrate with Input later
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
+
   const [steps, setSteps] = useState(() => {
     const savedSteps = localStorage.getItem("steps");
     return savedSteps ? parseInt(savedSteps, 10) : 0;
   });
-  const [value, setValue] = useState(0);
 
   // value for the demo
   // how many days passed from the init state
@@ -73,20 +71,36 @@ function App() {
     }
   };
 
-  const handleReset = () => {
-    setHearts(3);
-    setSteps(0);
-    setDay(0);
-    setMood("medium");
-    localStorage.removeItem("hearts");
-    localStorage.removeItem("steps");
-    localStorage.removeItem("day");
-    localStorage.removeItem("mood");
-  };
+  const [fitData, setFitData] = useState(null);
 
-  const updateCurrentInput = (e) => {
-    setValue(+e.target.value);
-  };
+  useEffect(() => {
+    const fetchSteps = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently({
+          scope: "https://www.googleapis.com/auth/fitness.activity.read",
+        });
+
+        const response = await fetch("/fitness-api", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const stepCount = data.dataset[0].point[0].value[0].intVal;
+          setSteps(stepCount);
+          console.log(data);
+        } else {
+          console.error("Error fetching steps", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching steps", error);
+      }
+    };
+
+    fetchSteps();
+  }, []);
 
   return (
     <div className="background">
@@ -94,18 +108,12 @@ function App() {
         day={day}
         handleClickNextDay={handleClickNextDay}
         hearts={hearts}
+        user={user}
+        isAuthenticated={isAuthenticated}
       />
       <Dog mood={mood} />
       <div>
         <Progress steps={steps} />
-        <Input
-          value={value}
-          handleChange={updateCurrentInput}
-          setSteps={setSteps}
-        />
-        <button className="reset-button " onClick={handleReset}>
-          Reset
-        </button>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </div>
     </div>
