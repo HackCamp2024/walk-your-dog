@@ -1,7 +1,7 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import "./LoginButton.css";
 
-const LoginButton = ({ handleLoginSuccess, handleLoginFailure }) => {
+const LoginButton = ({ handleLoginSuccess }) => {
   const login = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       console.log(codeResponse);
