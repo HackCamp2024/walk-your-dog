@@ -1,49 +1,39 @@
 import { useState, useEffect } from "react";
+import Cookie from "js-cookie"; // Import js-cookie for cookie management
 
 import { Header } from "./components/Header/Header";
 import { Progress } from "./components/Progress/Progress";
-import Input from "./components/Input/Input";
 import Dog from "./components/Dog/Dog";
 import LoginButton from "./components/LoginButton/LoginButton";
-import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
+import { fetchStepsData } from "./utils/getStepsData";
+
+import "./App.css";
 
 function App() {
   const [hearts, setHearts] = useState(() => {
     const savedHearts = localStorage.getItem("hearts");
     return savedHearts ? parseInt(savedHearts, 10) : 3;
   });
-  const { isAuthenticated } = useAuth0();
-  // TODO: integrate with Input later
+
   const [steps, setSteps] = useState(() => {
     const savedSteps = localStorage.getItem("steps");
     return savedSteps ? parseInt(savedSteps, 10) : 0;
   });
-  const [value, setValue] = useState(0);
 
-  // value for the demo
-  // how many days passed from the init state
-  const [day, setDay] = useState(() => {
-    const savedDay = localStorage.getItem("day");
-    return savedDay ? parseInt(savedDay, 10) : 0; // default to 0 if not found
-  });
+  const [error, setError] = useState(false);
 
-  //dog mood
   const [mood, setMood] = useState(() => {
     const savedMood = localStorage.getItem("mood");
-    return savedMood || "medium"; // default to 'medium' if not found
+    return savedMood || "medium";
   });
 
-  //save to localStorage whenever there's change
   useEffect(() => {
     localStorage.setItem("hearts", hearts);
     localStorage.setItem("steps", steps);
-    localStorage.setItem("day", day);
     localStorage.setItem("mood", mood);
-  }, [steps, hearts, day, mood]);
+  }, [steps, hearts, mood]);
 
-  //changes dog mood
   useEffect(() => {
     if (hearts <= 1) {
       setMood("sad");
@@ -54,59 +44,79 @@ function App() {
     }
   }, [hearts]);
 
-  // For demo
-  const handleClickNextDay = () => {
-    setDay(day + 1);
-    setSteps(0);
-    if (steps >= 10000) {
-      if (hearts == 5) {
-        setHearts(hearts);
+  const [accessToken, setAccessToken] = useState(null);
+
+  useEffect(() => {
+    // Check if the token is stored in the cookie when the app is loaded
+    const tokenFromCookie = Cookie.get("access_token");
+    if (tokenFromCookie) {
+      setAccessToken(tokenFromCookie);
+      fetchStepsData(tokenFromCookie);
+    }
+  }, []);
+
+  // Check if one day has passed and update hearts accordingly
+  useEffect(() => {
+    const lastUpdateDate = localStorage.getItem("lastUpdateDate");
+    const currentDate = new Date().toISOString().split("T")[0]; // Today's date (YYYY-MM-DD)
+
+    if (lastUpdateDate !== currentDate) {
+      // A new day has passed, update hearts
+      if (steps >= 10000) {
+        if (hearts < 5) {
+          setHearts(hearts + 1);
+        }
       } else {
-        setHearts(hearts + 1);
+        if (hearts > 0) {
+          setHearts(hearts - 1);
+        }
       }
+      // Save the new date of the update
+      localStorage.setItem("lastUpdateDate", currentDate);
+    }
+  }, [hearts, steps]);
+
+  const handleLoginSuccess = async (response) => {
+    const token = response.access_token;
+    // Save the token to a cookie
+    Cookie.set("access_token", token, {
+      expires: 7,
+      secure: true,
+      sameSite: "Strict",
+    });
+    setAccessToken(token);
+    const steps = await fetchStepsData(token);
+    if (steps === false) {
+      setSteps(0);
+      setError(true);
     } else {
-      if (hearts == 0) {
-        setHearts(hearts);
-      } else {
-        setHearts(hearts - 1);
-      }
+      setSteps(steps);
+      setError(false);
     }
   };
 
-  const handleReset = () => {
-    setHearts(3);
-    setSteps(0);
-    setDay(0);
-    setMood("medium");
-    localStorage.removeItem("hearts");
-    localStorage.removeItem("steps");
-    localStorage.removeItem("day");
-    localStorage.removeItem("mood");
-  };
-
-  const updateCurrentInput = (e) => {
-    setValue(+e.target.value);
+  const handleLoginFailure = (error) => {
+    console.error("Login failed:", error);
   };
 
   return (
     <div className="background">
-      <Header
-        day={day}
-        handleClickNextDay={handleClickNextDay}
-        hearts={hearts}
-      />
+      <Header hearts={hearts} />
       <Dog mood={mood} />
       <div>
-        <Progress steps={steps} />
-        <Input
-          value={value}
-          handleChange={updateCurrentInput}
-          setSteps={setSteps}
-        />
-        <button className="reset-button " onClick={handleReset}>
-          Reset
-        </button>
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        {error ? (
+          <p>Something wend wrong! Please try again!</p>
+        ) : (
+          <Progress steps={steps} />
+        )}
+        {!!accessToken ? (
+          <LogoutButton />
+        ) : (
+          <LoginButton
+            handleLoginSuccess={handleLoginSuccess}
+            handleLoginFailure={handleLoginFailure}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,19 @@
-// src/components/LoginButton.js
+import { useGoogleLogin } from "@react-oauth/google";
+import "./LoginButton.css";
 
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  return <button onClick={() => {console.log("login button clicked"); loginWithRedirect()}}>Log In</button>;
+const LoginButton = ({ handleLoginSuccess, handleLoginFailure }) => {
+  const login = useGoogleLogin({
+    onSuccess: async (codeResponse) => {
+      console.log(codeResponse);
+      await handleLoginSuccess(codeResponse);
+    },
+    scope: "https://www.googleapis.com/auth/fitness.activity.read",
+  });
+  return (
+    <button className="auth-button" onClick={() => login()}>
+      Login
+    </button>
+  );
 };
 
 export default LoginButton;
