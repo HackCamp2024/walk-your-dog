@@ -7,6 +7,8 @@ const LoginButton = ({ handleLoginSuccess }) => {
       await handleLoginSuccess(codeResponse);
     },
     scope: "https://www.googleapis.com/auth/fitness.activity.read",
+    redirect_uri: import.meta.env.VITE_APP_URL,
+    ux_mode: "popup",
   });
   return (
     <button className="auth-button" onClick={() => login()}>
